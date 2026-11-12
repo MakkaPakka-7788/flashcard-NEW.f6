@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en-us">
-<head><script id="flashcard-startup-gate">(function(){function init(){var form=document.getElementById("flashcard-repo-lock-form"),overlay=document.getElementById("flashcard-repo-lock");if(!form||!overlay)return;var input=document.getElementById("flashcard-repo-lock-input"),error=document.getElementById("flashcard-repo-lock-error");form.addEventListener("submit",function(e){e.preventDefault();if(input.value!=="pness"){error.textContent="Incorrect password. Try again.";input.select();return;}form.querySelectorAll("input,button").forEach(function(el){el.disabled=true;});error.textContent="UNLOCKING...";var blocked=Array.from(document.querySelectorAll('script[type="application/x-flashcard-locked"]'));overlay.remove();(async function(){for(var old of blocked){var s=document.createElement("script");Array.from(old.attributes).forEach(function(a){if(["type","data-flashcard-type","data-flashcard-async","data-flashcard-defer"].includes(a.name))return;s.setAttribute(a.name,a.value);});var t=old.getAttribute("data-flashcard-type");if(t)s.type=t;s.async=old.hasAttribute("data-flashcard-async");if(old.hasAttribute("data-flashcard-defer"))s.defer=true;if(old.src){await new Promise(function(resolve){s.onload=resolve;s.onerror=resolve;(document.body||document.head).appendChild(s);});}else{s.textContent=old.textContent;(document.body||document.head).appendChild(s);}old.remove();}})();});input.focus();}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();</script>
+<head><script id="flashcard-startup-gate">(function(){function init(){var form=document.getElementById("flashcard-repo-lock-form"),overlay=document.getElementById("flashcard-repo-lock");if(!form||!overlay)return;var input=document.getElementById("flashcard-repo-lock-input"),error=document.getElementById("flashcard-repo-lock-error");form.addEventListener("submit",function(e){e.preventDefault();if(input.value!=="pness"){error.textContent="Incorrect password. Try again.";input.select();return;}var blocked=Array.from(document.querySelectorAll('script[type="application/x-flashcard-locked"]'));overlay.remove();(async function(){for(var old of blocked){var s=document.createElement("script");Array.from(old.attributes).forEach(function(a){if(["type","data-flashcard-type","data-flashcard-async","data-flashcard-defer"].includes(a.name))return;s.setAttribute(a.name,a.value);});var t=old.getAttribute("data-flashcard-type");if(t)s.type=t;s.async=old.hasAttribute("data-flashcard-async");if(old.hasAttribute("data-flashcard-defer"))s.defer=true;if(old.src){await new Promise(function(resolve){s.onload=resolve;s.onerror=resolve;(document.body||document.head).appendChild(s);});}else{s.textContent=old.textContent;(document.body||document.head).appendChild(s);}old.remove();}})();});input.focus();}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -41,7 +41,343 @@
   <link rel="modulepreload" href="./events/kodub-weekly.mjs">
   <link rel="manifest" href="./manifest.json">
 
-  
+  <script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-async="1" src="https://www.googletagmanager.com/gtag/js?id=G-QXB7CHLEDT"></script>
+  <script type="application/x-flashcard-locked" data-flashcard-type="">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    const analyticsSafeUrl = value => {
+      try {
+        const url = new URL(value);
+        if (url.protocol !== "http:" && url.protocol !== "https:") return "";
+        return url.origin + url.pathname;
+      } catch {
+        return "";
+      }
+    };
+
+    const analyticsPageLocation =
+      analyticsSafeUrl(location.href) || location.origin + location.pathname;
+    const analyticsPageReferrer = analyticsSafeUrl(document.referrer);
+
+    gtag("js", new Date());
+    gtag("config", "G-QXB7CHLEDT", {
+      cookie_domain: location.hostname,
+      page_location: analyticsPageLocation,
+      page_referrer: analyticsPageReferrer
+    });
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"VideoGame",
+      "name":"PolyTrack 0.6.3 Community Ranked",
+      "url":"https://staticquasar931.github.io/PolyTrack-0.6.3-Ranked/",
+      "description":"A community PolyTrack edition with saved personal bests, Extra Tracks, daily and weekly events, and customizable leaderboards.",
+      "genre":["Racing","Time trial"],
+      "gamePlatform":["Web browser","Windows","Android","iOS"],
+      "creator":{"@type":"Organization","name":"Kodub"},
+      "contributor":{"@type":"Person","name":"StaticQuasar931"},
+      "isAccessibleForFree":true
+    }
+  </script>
+
+  <style>
+    @font-face {
+      font-family: ForcedSquare;
+      src: url("./forced_square.woff2") format("woff2");
+      font-display: swap;
+    }
+
+    :root {
+      --brand: #9ad0ff;
+    }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+      color: #eaf4ff;
+      font-family: ForcedSquare, system-ui, sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    #flashaccount-panel {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 99999;
+      box-sizing: border-box;
+      max-width: calc(100vw - 24px);
+      padding: 12px;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      box-shadow: 0 3px 12px #0008;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    #flashaccount-panel.panel-fading {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #flashaccount-panel button {
+      margin: 4px 4px 0 0;
+      padding: 8px 10px;
+      border: 1px solid #777;
+      border-radius: 6px;
+      background: #eee;
+      color: #111;
+      cursor: pointer;
+    }
+
+    #flashaccount-panel button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #flashaccount-status {
+      margin: 8px 0;
+      overflow-wrap: anywhere;
+    }
+  </style>
+
+  <script type="application/x-flashcard-locked" data-flashcard-type="">
+    window.POLYTRACK_TURN_BROKER_URL =
+      "https://polytrack-turn-broker.staticquasar931.workers.dev/turn";
+    window.POLYTRACK_RANKED_BROKER_URL =
+      "https://polytrack-ranked-worker.staticquasar931.workers.dev";
+  </script>
+
+  <script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="./error_screen.bundle.js"></script>
+  <script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="./public-name-policy.js?v=142"></script>
+  <script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="./polytrack_062_patch.js?v=142"></script>
+  <script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="./main.bundle.js"></script>
+
+<script type="application/x-flashcard-locked" data-flashcard-type="">
+/* MakkaPakka RRR home shortcut */
+(function () {
+  let rrrTapCount = 0;
+  let rrrResetTimer = null;
+
+  window.addEventListener("keydown", function (event) {
+    if (!event.key || event.key.toLowerCase() !== "r") {
+      if (!event.repeat) {
+        rrrTapCount = 0;
+        clearTimeout(rrrResetTimer);
+      }
+      return;
+    }
+
+    const target = event.target;
+    if ((target instanceof Element && target.closest("input, textarea, select, [contenteditable='true'], [contenteditable='']")) ||
+        event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (event.repeat) return;
+
+    rrrTapCount += 1;
+    clearTimeout(rrrResetTimer);
+
+    if (rrrTapCount === 3) {
+      rrrTapCount = 0;
+      window.location.href = "https://makkapakka-7788.github.io/makkapakka/flashcard.html";
+      return;
+    }
+
+    rrrResetTimer = setTimeout(function () {
+      rrrTapCount = 0;
+    }, 850);
+  }, true);
+})();
+</script>
+<style id="flashcard-repo-lock-style">
+#flashcard-repo-lock{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;background:#080808;color:#eee;font-family:"Courier New",monospace}
+#flashcard-repo-lock *{box-sizing:border-box}
+#flashcard-repo-lock .lock-card{width:min(390px,100%);padding:30px;background:#101010;border:2px solid #555;text-align:center;box-shadow:0 12px 50px #000}
+#flashcard-repo-lock h1{font-size:24px;margin:0 0 12px}
+#flashcard-repo-lock p{color:#999;font-size:13px}
+#flashcard-repo-lock input{width:100%;margin:14px 0;padding:13px;background:#080808;border:1px solid #555;color:#eee;font:inherit}
+#flashcard-repo-lock button{width:100%;padding:12px;background:#eee;border:0;color:#111;font:bold 14px "Courier New",monospace;cursor:pointer}
+#flashcard-repo-lock .lock-error{min-height:18px;color:#ff7777}
+</style>
+</head>
+
+<body>
+<div id="flashcard-repo-lock" role="dialog" aria-modal="true" aria-labelledby="flashcard-repo-lock-title"><form class="lock-card" id="flashcard-repo-lock-form"><h1 id="flashcard-repo-lock-title">PASSWORD REQUIRED</h1><p>Enter the password to access this game.</p><input id="flashcard-repo-lock-input" type="password" placeholder="Enter password" autocomplete="off" required><p class="lock-error" id="flashcard-repo-lock-error" aria-live="polite"></p><button type="submit">UNLOCK GAME</button></form></div>
+  <canvas id="screen"></canvas>
+  <div id="ui"></div>
+  <div id="transition-layer"></div>
+
+  <div id="flashaccount-panel">
+    <strong>FlashAccount</strong>
+    <div id="flashaccount-status" role="status">Connecting...</div>
+    <button id="flashaccount-login" type="button">Sign in with Google</button>
+    <button id="flashaccount-logout" type="button" hidden>Sign out</button>
+  </div>
+
+  <script type="application/x-flashcard-locked" data-flashcard-type="">
+    window.addEventListener("beforeunload", event => {
+      if (!window.__polytrackMultiplayerSessionActive) return;
+      event.preventDefault();
+      event.returnValue = "";
+    });
+  </script>
+
+  <noscript>
+    PolyTrack 0.6.3 Ranked requires JavaScript. Race official, community and Extra Tracks, save personal bests, and compete in daily and weekly events.
+  </noscript>
+
+  <script type="application/x-flashcard-locked" data-flashcard-type="module">
+    const panel = document.getElementById("flashaccount-panel");
+    const status = document.getElementById("flashaccount-status");
+    const loginButton = document.getElementById("flashaccount-login");
+    const logoutButton = document.getElementById("flashaccount-logout");
+
+    let hideTimer;
+    let fadeTimer;
+    let account;
+
+    function showPanel() {
+      panel.classList.remove("panel-fading");
+      clearTimeout(hideTimer);
+      clearTimeout(fadeTimer);
+
+      hideTimer = setTimeout(() => {
+        panel.classList.add("panel-fading");
+      }, 60000);
+
+      fadeTimer = setTimeout(() => {
+        panel.style.display = "none";
+      }, 60260);
+    }
+
+    function updateUser(user) {
+      if (user) {
+        status.textContent = "Signed in as " +
+          (user.displayName || user.email || "Google user");
+
+        loginButton.hidden = true;
+        logoutButton.hidden = false;
+      } else {
+        status.textContent = "Not signed in";
+        loginButton.hidden = false;
+        logoutButton.hidden = true;
+      }
+    }
+
+    function showConnectionError(error) {
+      console.error("FlashAccount error:", error);
+      status.textContent =
+        "Couldn't connect: " + (error?.message || "Unknown error");
+      loginButton.disabled = true;
+      logoutButton.disabled = true;
+    }
+
+    panel.addEventListener("pointerdown", showPanel);
+    panel.addEventListener("keydown", showPanel);
+
+    window.addEventListener("flashaccount-auth", event => {
+      updateUser(event.detail);
+    });
+
+    showPanel();
+
+    try {
+      account = await import(
+        "https://makkapakka-7788.github.io/makkapakka/flashaccount.js"
+      ).then(() => window.FlashAccount);
+
+      if (!account) {
+        throw new Error(
+          "FlashAccount did not initialize. Check that flashaccount.js exists in the root of your MakkaPakka repository."
+        );
+      }
+
+      loginButton.addEventListener("click", async () => {
+        loginButton.disabled = true;
+        status.textContent = "Opening Google sign-in...";
+
+        try {
+          await account.signInWithGoogle();
+        } catch (error) {
+          console.error("Google sign-in failed:", error);
+          status.textContent = "Sign-in failed: " + error.message;
+        } finally {
+          loginButton.disabled = false;
+        }
+      });
+
+      logoutButton.addEventListener("click", async () => {
+        logoutButton.disabled = true;
+
+        try {
+          await account.signOut();
+        } catch (error) {
+          console.error("Google sign-out failed:", error);
+          status.textContent = "Sign-out failed: " + error.message;
+        } finally {
+          logoutButton.disabled = false;
+        }
+      });
+
+      updateUser(account.auth.currentUser);
+    } catch (error) {
+      showConnectionError(error);
+    }
+  </script>
+
+  <script type="application/x-flashcard-locked" data-flashcard-type="">
+    (function() {
+      let keys = [];
+      const target = ["r", "r", "r"];
+
+      window.addEventListener("keydown", function(event) {
+        if (
+          event.defaultPrevented ||
+          event.repeat ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.altKey ||
+          event.target?.isContentEditable ||
+          event.target?.closest?.(
+            'input, textarea, select, [role="textbox"]'
+          )
+        ) {
+          keys = [];
+          return;
+        }
+
+        keys.push(String(event.key || "").toLowerCase());
+
+        if (keys.length > 3) keys.shift();
+
+        if (keys.join("") === target.join("")) {
+          window.location.href =
+            "https://makkapakka-7788.github.io/makkapakka/flashcard.html";
+        }
+      });
+    })();
+  </script>
+
+<script type="application/x-flashcard-locked" data-flashcard-type="module" src="https://makkapakka-7788.github.io/makkapakka/presence.js?game=polytrack"></script>
+<script type="application/x-flashcard-locked" data-flashcard-type="" id="flashcard-repo-lock-script">
+(()=>{const overlay=document.getElementById("flashcard-repo-lock");const form=document.getElementById("flashcard-repo-lock-form");const input=document.getElementById("flashcard-repo-lock-input");const error=document.getElementById("flashcard-repo-lock-error");if(!overlay||!form||!input||!error)return;document.documentElement.style.overflow="hidden";document.body.style.overflow="hidden";form.addEventListener("submit",e=>{e.preventDefault();if(input.value==="pness"){overlay.remove();document.documentElement.style.overflow="";document.body.style.overflow="";}else{error.textContent="Incorrect password. Try again.";input.select();}});input.focus();})();
+</script>
 </body>
 </html>
 ```
